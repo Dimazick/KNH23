@@ -5549,7 +5549,7 @@ MonoBehaviour:
   _spawnPosition: {x: 0, y: -3}
   _ObjectForThrowPrefab: {fileID: 8886484807357379663, guid: 9006c55b96249024c83b5c5f0d4c705e, type: 3}
   _activeThrowObject: {fileID: 0}
-  _gamePlayController: {fileID: 0}
+  _gamePlayController: {fileID: 1237275457}
 --- !u!4 &1122860173
 Transform:
   m_ObjectHideFlags: 0
@@ -5752,6 +5752,7 @@ GameObject:
   - component: {fileID: 1368786995}
   - component: {fileID: 1368786994}
   - component: {fileID: 1368786993}
+  - component: {fileID: 1368786996}
   m_Layer: 5
   m_Name: ButtonResstart
   m_TagString: Untagged
@@ -5862,6 +5863,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1368786991}
   m_CullTransparentMesh: 1
+--- !u!114 &1368786996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1368786991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a1d5ed7336b73f4eb1cd678cb3f9e97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1392397652
 GameObject:
   m_ObjectHideFlags: 0

@@ -26,9 +26,5 @@ namespace KNH23.CoreGamePlay
         {
             return _countOfChanses;
         }
-
-
-
-
     }
 }

@@ -22,14 +22,13 @@ namespace KNH23.UI
         private IEnumerator LittleBitWait()
         {
             yield return new WaitForSeconds(5);
-            
+            _resstartButton.SetActive(true);
         }
 
        
         public void ShowResstartButton()
         {
-           StartCoroutine(nameof(LittleBitWait));
-           _resstartButton.SetActive(true);
+           StartCoroutine(LittleBitWait());
         }
     }
 }
