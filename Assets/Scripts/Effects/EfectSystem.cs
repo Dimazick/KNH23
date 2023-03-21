@@ -11,13 +11,13 @@ namespace KNH23.EfectSystem
         private void OnEnable()
         {
            KNH23.CoreGamePlay.Throwing.OnCollisionWintobstacle += PlayGamover;
-           KNH23.CoreGamePlay.Throwing.OnCollisionWithTarget += PlaySuccess;
+           KNH23.CoreGamePlay.TargetCollisionDetector.OnCollisionWithTarget += PlaySuccess;
         }
 
         private void OnDisable()
         {
             KNH23.CoreGamePlay.Throwing.OnCollisionWintobstacle -= PlayGamover;
-            KNH23.CoreGamePlay.Throwing.OnCollisionWithTarget -= PlaySuccess;
+            KNH23.CoreGamePlay.TargetCollisionDetector.OnCollisionWithTarget -= PlaySuccess;
         }
 
        

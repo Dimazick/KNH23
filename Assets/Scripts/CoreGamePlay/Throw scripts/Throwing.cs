@@ -13,8 +13,7 @@ namespace KNH23.CoreGamePlay
         private Rigidbody2D _rigidbody;
 
         private ForceOfThrow _forceOfThrow;
-
-        public static event Action OnCollisionWithTarget;
+                
         public static event Action OnCollisionWintobstacle;
 
 
@@ -27,6 +26,7 @@ namespace KNH23.CoreGamePlay
            
         }
 
+        
         public void Throw()
         {
             if (_isActive)
@@ -44,27 +44,12 @@ namespace KNH23.CoreGamePlay
 
             _isActive = false;
 
-            var detector = GetComponent<IDetector>();
+            var detector = collision.gameObject.GetComponent<IDetector>();
             if (detector == null) return;
 
-            detector.BehaviourDetector();
+            detector.BehaviourDetector();            
 
-            if (collision.collider.CompareTag(""))
-            {
 
-                Debug.Log(" Collision with TARGET");
-                _rigidbody.velocity = new Vector2(0, 0);
-                _rigidbody.bodyType = RigidbodyType2D.Kinematic;
-                transform.SetParent(collision.collider.transform);
-
-                _collider2d.offset = new Vector2(_collider2d.offset.x, -0.4f);
-                _collider2d.size = new Vector2(_collider2d.size.x - 0.1f, 1.2f);
-
-                OnCollisionWithTarget.Invoke();
-                             
-            }
-
-            
         }
 
         public void BehaviourDetector()
@@ -72,6 +57,18 @@ namespace KNH23.CoreGamePlay
             _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, -2);
             Debug.Log("GameOver!!!");
             OnCollisionWintobstacle.Invoke();
+        }
+
+        public void BecomeTheObstacle(Collision2D someObject)
+        {
+            _isActive = false;
+            _rigidbody.velocity = new Vector2(0, 0);
+            _rigidbody.bodyType = RigidbodyType2D.Kinematic;
+            _rigidbody.simulated = false;
+            transform.SetParent(someObject.collider.transform);
+
+            _collider2d.offset = new Vector2(_collider2d.offset.x, -0.4f);
+            _collider2d.size = new Vector2(_collider2d.size.x - 0.1f, 1.2f);
         }
     }
 
