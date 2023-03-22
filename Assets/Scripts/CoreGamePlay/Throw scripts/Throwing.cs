@@ -1,11 +1,11 @@
-using System;
+using KNH23.CoreGamePlay.Detection;
 using UnityEngine;
 
 namespace KNH23.CoreGamePlay
 {
     [RequireComponent (typeof(Rigidbody2D))]
     [RequireComponent(typeof(BoxCollider2D))]
-    public class Throwing : MonoBehaviour, IDetector
+    public class Throwing : MonoBehaviour
     {
         [SerializeField] private bool _isActive = true;
 
@@ -14,9 +14,7 @@ namespace KNH23.CoreGamePlay
 
         private ForceOfThrow _forceOfThrow;
                 
-        public static event Action OnCollisionWintobstacle;
-
-
+       
         void Awake()
         {
             _forceOfThrow = new ForceOfThrow();
@@ -44,36 +42,13 @@ namespace KNH23.CoreGamePlay
 
             _isActive = false;
 
-            var detector = collision.gameObject.GetComponent<IDetector>();
+            var detector = collision.gameObject.GetComponent<IDetectorCollision>();
             if (detector == null) return;
 
-            detector.BehaviourDetector();            
-
+            detector.BehaviourDetector();  
 
         }
 
-        public void BehaviourDetector()
-        {
-            _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, -2);
-            Debug.Log("GameOver!!!");
-            OnCollisionWintobstacle.Invoke();
-        }
-
-        public void BecomeTheObstacle(Collision2D someObject)
-        {
-            _isActive = false;
-            _rigidbody.velocity = new Vector2(0, 0);
-            _rigidbody.bodyType = RigidbodyType2D.Kinematic;
-            _rigidbody.simulated = false;
-            transform.SetParent(someObject.collider.transform);
-
-            _collider2d.offset = new Vector2(_collider2d.offset.x, -0.4f);
-            _collider2d.size = new Vector2(_collider2d.size.x - 0.1f, 1.2f);
-        }
     }
-
-    public interface IDetector
-    {
-        void BehaviourDetector();
-    }
+       
 }

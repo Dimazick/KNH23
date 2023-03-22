@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8886484807357379651}
   - component: {fileID: 8886484807357379660}
   - component: {fileID: 8886484807357379661}
+  - component: {fileID: 5780222434151473290}
   m_Layer: 0
   m_Name: Knife1
   m_TagString: Throw
@@ -95,6 +96,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isActive: 1
+--- !u!114 &5780222434151473290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8886484807357379663}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: effa71822e36d3d4dafc93e89d0fa8f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8886484808570319484
 GameObject:
   m_ObjectHideFlags: 0

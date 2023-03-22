@@ -1,4 +1,5 @@
 using UnityEngine;
+using KNH23.CoreGamePlay.Detection;
 
 namespace KNH23.CoreGamePlay
 {

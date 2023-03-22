@@ -10,12 +10,12 @@ namespace KNH23.UI
 
         private void OnEnable()
         {
-            Throwing.OnCollisionWintobstacle += ShowResstartButton;
+            CoreGamePlay.Detection.ObstacleCollisionDetector.OnCollisionWintobstacle += ShowResstartButton;
         }
 
         private void OnDisable()
         {
-            Throwing.OnCollisionWintobstacle -= ShowResstartButton;
+            CoreGamePlay.Detection.ObstacleCollisionDetector.OnCollisionWintobstacle -= ShowResstartButton;
         }
 
 
