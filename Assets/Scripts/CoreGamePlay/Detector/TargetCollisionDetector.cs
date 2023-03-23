@@ -12,8 +12,9 @@ namespace KNH23.CoreGamePlay.Detection
         public void BehaviourDetector()
         {
             Debug.Log(" Collision with TARGET");
-            _obstacleSpawnPosition = new Vector2(transform.position.x, transform.position.y-1);
+            _obstacleSpawnPosition = new Vector2(transform.position.x, transform.position.y - 1.4f);
             ObstacleCollisionDetector obj = Instantiate(_obstacle, _obstacleSpawnPosition, Quaternion.identity);
+            obj.transform.SetParent(transform);
             OnCollisionWithTarget.Invoke();
         }
 
