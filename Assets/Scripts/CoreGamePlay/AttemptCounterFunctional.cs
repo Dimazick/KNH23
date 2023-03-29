@@ -6,10 +6,13 @@ namespace KNH23.CoreGamePlay
     {
         [SerializeField] private int _countOfChanses;
         [SerializeField] private AttemptCounterVisual _counter;
+        [SerializeField] private GameObject _target;
+        private Vector2 _targetPosition = new Vector2(0, 2.5f);
 
         private void Awake()
         {
             _counter.SetDisplayAttemptCount(_countOfChanses);
+            SpawnTarget();
         }
 
         private void OnEnable()
@@ -37,6 +40,11 @@ namespace KNH23.CoreGamePlay
         {
             _countOfChanses++;
             _counter.DisplayIncrementAttemptCount(_countOfChanses);
+        }
+
+        private void SpawnTarget()
+        {
+            _target = Instantiate(_target, _targetPosition, Quaternion.identity);
         }
     }
 }
