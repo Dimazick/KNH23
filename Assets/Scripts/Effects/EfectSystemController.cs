@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace KNH23.EfectSystem
 {
-    public class EfectSystem : MonoBehaviour
+    public class EfectSystemController : MonoBehaviour
     {
         [SerializeField] private ParticleSystem _successHit;
         [SerializeField] private ParticleSystem _gamover;

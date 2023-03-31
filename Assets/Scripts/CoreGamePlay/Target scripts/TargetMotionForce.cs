@@ -4,15 +4,15 @@ namespace KNH23.CoreGamePlay
 {
     public class TargetMotionForce : MonoBehaviour
     {
-        private CircleCollider2D _collider;
+        
         private Rigidbody2D _logBody;
         private TargetMotionData _rotationVector;
-        private float _rotationSpeed = 0.5f;
+        [SerializeField] [Range(0, 20)] private float _rotationSpeed;
 
 
         private void Start()
         {
-            _collider = GetComponent<CircleCollider2D>();
+           
             _logBody = GetComponent<Rigidbody2D>();
             _rotationVector = new TargetMotionData();
         }
@@ -27,7 +27,7 @@ namespace KNH23.CoreGamePlay
             _logBody.AddTorque(_rotationSpeed * _rotationVector.RightDirection());
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
             GetRotationLeft();
         }

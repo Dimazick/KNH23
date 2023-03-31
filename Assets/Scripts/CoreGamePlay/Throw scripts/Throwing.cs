@@ -9,7 +9,7 @@ namespace KNH23.CoreGamePlay
     {
         [SerializeField] private bool _isActive = true;
 
-        private BoxCollider2D _collider2d;
+        
         private Rigidbody2D _rigidbody;
 
         private ForceOfThrow _forceOfThrow;
@@ -19,7 +19,7 @@ namespace KNH23.CoreGamePlay
         {
             _forceOfThrow = new ForceOfThrow();
             
-            _collider2d = GetComponent<BoxCollider2D>();
+           
             _rigidbody = GetComponent<Rigidbody2D>();
            
         }

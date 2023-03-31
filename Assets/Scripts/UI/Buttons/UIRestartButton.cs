@@ -6,6 +6,7 @@ namespace KNH23.UI.Buttons
     {
         public override void OnClick()
         {
+            
             SceneManager.LoadScene(0);
         }
     }
