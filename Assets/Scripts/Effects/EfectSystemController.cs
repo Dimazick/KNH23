@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 
 namespace KNH23.EfectSystem
@@ -7,30 +8,43 @@ namespace KNH23.EfectSystem
     {
         [SerializeField] private ParticleSystem _successHit;
         [SerializeField] private ParticleSystem _gamover;
+        [SerializeField] private ParticleSystem _finishLevel;
 
         private void OnEnable()
         {
-           CoreGamePlay.Detection.ObstacleCollisionDetector.OnCollisionWintobstacle += PlayGamover;
-           CoreGamePlay.Detection.TargetCollisionDetector.OnCollisionWithTarget += PlaySuccess;
+            CoreGamePlay.Detection.ObstacleCollisionDetector.OnCollisionWintobstacle += PlayGamover;
+            CoreGamePlay.Detection.TargetCollisionDetector.OnCollisionWithTarget += PlaySuccess;
+            CoreGamePlay.AttemptCounterFunctional.TheEndOfCounts += PlayFinish;
         }
 
         private void OnDisable()
         {
             CoreGamePlay.Detection.ObstacleCollisionDetector.OnCollisionWintobstacle -= PlayGamover;
             CoreGamePlay.Detection.TargetCollisionDetector.OnCollisionWithTarget -= PlaySuccess;
+            CoreGamePlay.AttemptCounterFunctional.TheEndOfCounts -= PlayFinish;
         }
 
-       
+        private void PlayFinish()
+        {
+            StartCoroutine(ShowCongradilations());
+        }
 
-        public void PlayGamover()
+
+        private void PlayGamover()
         {
             _gamover.Play();
         }
 
-        public void PlaySuccess()
+        private void PlaySuccess()
         {
             _successHit.Play();
-           
+
+        }
+
+        private IEnumerator ShowCongradilations()
+        {
+            yield return new WaitForSeconds(1.5f);
+            _finishLevel.Play();
         }
     }
 }

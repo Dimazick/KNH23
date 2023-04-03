@@ -1,10 +1,10 @@
 using System.Collections;
 using UnityEngine;
-using KNH23.CoreGamePlay;
+
 
 namespace KNH23.UI
 {
-    public class PanelController : MonoBehaviour
+    public class ButtonPanelController : MonoBehaviour
     {
         [SerializeField] private GameObject _resstartButton;
 

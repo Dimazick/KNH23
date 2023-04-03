@@ -1,6 +1,8 @@
 using KNH23.EfectSystem;
 using UnityEngine;
 using KNH23.CoreGamePlay;
+using KNH23.UI.Buttons;
+using UnityEngine.SceneManagement;
 
 namespace KNH23
 {
@@ -12,6 +14,8 @@ namespace KNH23
        [SerializeField] private EfectSystemController _effects;
        [SerializeField] private AttemptCounterFunctional _attemptCounterFunctional;
        [SerializeField] private AttemptCounterVisual _attemptCounterVisual;
+        [SerializeField] private UIStartButton _startButton;
+       
 
 
         private void SpawnTarget()
@@ -24,14 +28,30 @@ namespace KNH23
             _effects.gameObject.SetActive(true);
             _attemptCounterFunctional.gameObject.SetActive(true);
             _attemptCounterVisual.gameObject.SetActive(true);
+            _startButton.gameObject.SetActive(false);
         }
         
         private void OnEnable()
         {
-            UI.Buttons.UIStartButton.StartGameplay += StartGamePlay;
-            UI.Buttons.UIStartButton.StartGameplay += SpawnTarget;
-            
+            UIStartButton.StartGameplay += StartGamePlay;
+            UIStartButton.StartGameplay += SpawnTarget;
+            UIRestartButton.ReStartGameplay += ResstartGamePlay;
+
         }
 
+        private void OnDisable()
+        {
+            UIStartButton.StartGameplay -= StartGamePlay;
+            UIStartButton.StartGameplay -= SpawnTarget;
+            UIRestartButton.ReStartGameplay -= ResstartGamePlay;
+
+        }
+
+        private void ResstartGamePlay()
+        {
+            SceneManager.LoadScene(0);
+            StartGamePlay();
+
+        }
     }
 }

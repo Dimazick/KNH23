@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 
 namespace KNH23.CoreGamePlay
 {
@@ -6,7 +7,8 @@ namespace KNH23.CoreGamePlay
     {
         [SerializeField] private int _countOfChanses;
         [SerializeField] private AttemptCounterVisual _counter;
-       
+        public static event Action TheEndOfCounts;
+
         private void Awake()
         {
             _counter.SetDisplayAttemptCount(_countOfChanses);
@@ -31,6 +33,10 @@ namespace KNH23.CoreGamePlay
         public void DecrementOfCounts()
         {
             _countOfChanses--;
+            if(_countOfChanses == 0)
+            {
+                TheEndOfCounts.Invoke();
+            }
             _counter.DisplayDecrementAttemptCount(_countOfChanses);
         }
 

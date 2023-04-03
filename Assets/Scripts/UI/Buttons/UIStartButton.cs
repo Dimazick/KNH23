@@ -11,7 +11,8 @@ namespace KNH23.UI.Buttons
         {
             Debug.Log("мы начинаем КВН");
             StartGameplay.Invoke();
-            gameObject.SetActive(false);
+            
         }
+        
     }
 }
