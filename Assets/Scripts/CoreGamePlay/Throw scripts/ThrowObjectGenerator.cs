@@ -36,10 +36,10 @@ namespace KNH23.CoreGamePlay
         }
 
        
-        private void SpawnThrowObject() // уменьшает количество доступных ножей на уровне и спавнит 1 новый.
+        public void SpawnThrowObject() // уменьшает количество доступных ножей на уровне и спавнит 1 новый.
         {
             
-            if (__attemptCounter.GetCounts() == 0) return;
+            if (__attemptCounter.GetChances() == 0) return;
             
             Throwing obj = Instantiate(_objectForThrowPrefab, _spawnPosition, Quaternion.identity); // возьми префаб ножа и поставь в позицию спавна.
             _activeThrowObject = obj;// переписываем появившийся префаб на роль метаемого заряда.

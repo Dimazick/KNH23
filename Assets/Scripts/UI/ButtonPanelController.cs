@@ -7,6 +7,7 @@ namespace KNH23.UI
     public class ButtonPanelController : MonoBehaviour
     {
         [SerializeField] private GameObject _resstartButton;
+        [SerializeField] private GameObject _startButton;
 
         private void OnEnable()
         {
@@ -29,6 +30,17 @@ namespace KNH23.UI
         public void ShowResstartButton()
         {
            StartCoroutine(LittleBitWait());
+
+        }
+
+        public void DontShowStartButton()
+        {
+            _startButton.SetActive(false);
+        }
+
+        public void DontShowResstartButton()
+        {
+            _resstartButton.SetActive(false);
         }
     }
 }

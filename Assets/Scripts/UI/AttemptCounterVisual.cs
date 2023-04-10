@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.UI;
+
 
 namespace KNH23
 {
@@ -20,9 +20,10 @@ namespace KNH23
             _panelOfThrow.transform.GetChild(count).gameObject.SetActive(false);
         }
 
-        public void DisplayIncrementAttemptCount(int count)
+        public void DisplayIncrementAttemptCount(int _finalCount, int _startCount )
         {
-            _panelOfThrow.transform.GetChild(count).gameObject.SetActive(true);
+            for (int i = _finalCount; i < _startCount; i++)
+                _panelOfThrow.transform.GetChild(i).gameObject.SetActive(true);
         }
 
     }

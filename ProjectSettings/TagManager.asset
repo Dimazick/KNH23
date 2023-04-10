@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Target
   - Throw
+  - GamePlayScene
   layers:
   - Default
   - TransparentFX
