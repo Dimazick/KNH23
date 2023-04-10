@@ -2,9 +2,9 @@ using KNH23.EfectSystem;
 using UnityEngine;
 using KNH23.CoreGamePlay;
 using KNH23.UI;
-using TMPro;
 using KNH23.UI.Buttons;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 namespace KNH23
 {
@@ -17,7 +17,7 @@ namespace KNH23
         [SerializeField] private AttemptCounterFunctional _attemptCounterFunctional;
         [SerializeField] private AttemptCounterVisual _attemptCounterVisual;
         [SerializeField] private ButtonPanelController _buttonPanelController;
-        [SerializeField] private TMP_Text _score;
+        [SerializeField] private ScoreCounter _score;
         public GameObject[] _oldTarget;
 
 
@@ -40,14 +40,14 @@ namespace KNH23
             _attemptCounterVisual.gameObject.SetActive(true);
             _attemptCounterVisual.SetDisplayAttemptCount(_attemptCounterFunctional.GetStartCounts());
             _score.gameObject.SetActive(true);
-           
-           
+          
         }
         
         private void OnEnable()
         {
             UIStartButton.StartGameplay += StartGamePlay;
             UIRestartButton.ReStartGameplay += ResstartGamePlay;
+            UIMainMenuButton.GoInMainMenu += GoToMainMenu;
             
 
         }
@@ -63,8 +63,7 @@ namespace KNH23
         {
             UIStartButton.StartGameplay -= StartGamePlay;
             UIRestartButton.ReStartGameplay -= ResstartGamePlay;
-            
-
+            UIMainMenuButton.GoInMainMenu -= GoToMainMenu;
         }
 
         private void ResstartGamePlay()
@@ -73,9 +72,13 @@ namespace KNH23
             StartCoroutine(ChangeTargerts());
             _buttonPanelController.DontShowResstartButton();
             _throwObjectGenerator.SpawnThrowObject();
-            _attemptCounterVisual.DisplayIncrementAttemptCount(_attemptCounterFunctional.GetChances(), _attemptCounterFunctional.GetStartCounts());
-
-            Debug.Log("Resstart in scene manager");
+            _score.ResetPoints();
+            _attemptCounterVisual.DisplayIncrementAttemptCount(_attemptCounterFunctional.GetStartCounts());
         }
+        private void GoToMainMenu()
+        {
+            SceneManager.LoadScene(0);
+        }
+
     }
 }

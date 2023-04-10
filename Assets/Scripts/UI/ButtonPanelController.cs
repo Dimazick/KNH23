@@ -8,6 +8,7 @@ namespace KNH23.UI
     {
         [SerializeField] private GameObject _resstartButton;
         [SerializeField] private GameObject _startButton;
+        [SerializeField] private GameObject _mainMenuButton;
 
         private void OnEnable()
         {
@@ -22,7 +23,7 @@ namespace KNH23.UI
 
         private IEnumerator LittleBitWait()
         {
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(1);
             _resstartButton.SetActive(true);
         }
 

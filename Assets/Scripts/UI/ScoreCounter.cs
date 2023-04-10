@@ -27,7 +27,13 @@ namespace KNH23.UI
         private void PointsIncrement()
         {
             _points += 1;
-            _text.text = _points.ToString();
+            _text.text = "Score: " + _points.ToString();
+        }
+
+        public void ResetPoints()
+        {
+            _points = 0;
+            _text.text = "Score: " + _points.ToString();
         }
     }
 }

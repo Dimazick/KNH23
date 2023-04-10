@@ -20,9 +20,9 @@ namespace KNH23
             _panelOfThrow.transform.GetChild(count).gameObject.SetActive(false);
         }
 
-        public void DisplayIncrementAttemptCount(int _finalCount, int _startCount )
+        public void DisplayIncrementAttemptCount(int _startCount )
         {
-            for (int i = _finalCount; i < _startCount; i++)
+            for (int i = 0; i < _startCount; i++)
                 _panelOfThrow.transform.GetChild(i).gameObject.SetActive(true);
         }
 

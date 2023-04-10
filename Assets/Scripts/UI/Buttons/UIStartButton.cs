@@ -9,7 +9,7 @@ namespace KNH23.UI.Buttons
         
         public override void OnClick()
         {
-            Debug.Log("мы начинаем КВН");
+            
             StartGameplay.Invoke();
             
         }
