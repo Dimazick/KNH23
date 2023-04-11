@@ -35,5 +35,10 @@ namespace KNH23.UI
             _points = 0;
             _text.text = "Score: " + _points.ToString();
         }
+
+        public int GetPoints()
+        {
+            return _points;
+        }
     }
 }

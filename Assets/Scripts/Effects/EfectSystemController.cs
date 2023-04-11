@@ -14,14 +14,14 @@ namespace KNH23.EfectSystem
         {
             CoreGamePlay.Detection.ObstacleCollisionDetector.OnCollisionWintobstacle += PlayGamover;
             CoreGamePlay.Detection.TargetCollisionDetector.OnCollisionWithTarget += PlaySuccess;
-            CoreGamePlay.AttemptCounterFunctional.TheEndOfCounts += PlayFinish;
+            SceneController.SuccesLevel += PlayFinish;
         }
 
         private void OnDisable()
         {
             CoreGamePlay.Detection.ObstacleCollisionDetector.OnCollisionWintobstacle -= PlayGamover;
             CoreGamePlay.Detection.TargetCollisionDetector.OnCollisionWithTarget -= PlaySuccess;
-            CoreGamePlay.AttemptCounterFunctional.TheEndOfCounts -= PlayFinish;
+            SceneController.SuccesLevel -= PlayFinish;
         }
 
         private void PlayFinish()
@@ -43,7 +43,7 @@ namespace KNH23.EfectSystem
 
         private IEnumerator ShowCongradilations()
         {
-            yield return new WaitForSeconds(1.5f);
+            yield return new WaitForSeconds(0.5f);
             _finishLevel.Play();
         }
     }

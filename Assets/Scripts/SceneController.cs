@@ -3,8 +3,7 @@ using UnityEngine;
 using KNH23.CoreGamePlay;
 using KNH23.UI;
 using KNH23.UI.Buttons;
-using System.Collections;
-using UnityEngine.SceneManagement;
+using System;
 
 namespace KNH23
 {
@@ -19,6 +18,8 @@ namespace KNH23
         [SerializeField] private ButtonPanelController _buttonPanelController;
         [SerializeField] private ScoreCounter _score;
         public GameObject[] _oldTarget;
+        private bool _gameOver = false;
+        public static event Action SuccesLevel;
 
 
         private void Awake()
@@ -50,21 +51,26 @@ namespace KNH23
             UIStartButton.StartGameplay += StartGamePlay;
             UIRestartButton.ReStartGameplay += ResstartGamePlay;
             UIMainMenuButton.GoInMainMenu += GoToMainMenu;
-            
+            CoreGamePlay.Detection.ObstacleCollisionDetector.OnCollisionWintobstacle += GetGamover;
+            AttemptCounterFunctional.TheEndOfCounts += GetSuccesLevel;
+
 
         }
-        private void ChangeTargerts()
-        {
-            _oldTarget = GameObject.FindGameObjectsWithTag("Target");
-            Destroy(_oldTarget[0]);            
-            SpawnTarget();
-        }
-
+        
         private void OnDisable()
         {
             UIStartButton.StartGameplay -= StartGamePlay;
             UIRestartButton.ReStartGameplay -= ResstartGamePlay;
             UIMainMenuButton.GoInMainMenu -= GoToMainMenu;
+            CoreGamePlay.Detection.ObstacleCollisionDetector.OnCollisionWintobstacle -= GetGamover;
+            AttemptCounterFunctional.TheEndOfCounts -= GetSuccesLevel;
+        }
+
+        private void ChangeTargerts()
+        {
+            _oldTarget = GameObject.FindGameObjectsWithTag("Target");
+            Destroy(_oldTarget[0]);
+            SpawnTarget();
         }
 
         private void ResstartGamePlay()
@@ -89,9 +95,27 @@ namespace KNH23
             _attemptCounterVisual.DestroyAllIcons(_attemptCounterFunctional.GetStartCounts());
             _score.gameObject.SetActive(false);
 
-
-
         }
 
+        private void GetGamover()
+        {
+            _gameOver = true;
+        }
+
+        private void ResetGamover()
+        {
+            _gameOver = false;
+        }
+
+        private void GetSuccesLevel()
+        {
+            if (_gameOver==true)
+                return;
+            else
+                SuccesLevel.Invoke();
+            ResetGamover();
+        }
+
+       
     }
 }

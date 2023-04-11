@@ -23,7 +23,7 @@ namespace KNH23.UI
 
         private IEnumerator LittleBitWait()
         {
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSecondsRealtime(1);
             _resstartButton.SetActive(true);
         }
 

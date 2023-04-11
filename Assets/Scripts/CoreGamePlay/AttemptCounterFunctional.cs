@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using System.Collections;
 
 namespace KNH23.CoreGamePlay
 {
@@ -36,16 +37,16 @@ namespace KNH23.CoreGamePlay
             _countOfChanses--;
             if(_countOfChanses == 0)
             {
-                TheEndOfCounts.Invoke();
+                StartCoroutine(WaitToMessage());
             }
             _counter.DisplayDecrementAttemptCount(_countOfChanses);
         }
 
-       // public void IncrementOfCounts()
-        //{
-         //   _countOfChanses++;
-         //   _counter.DisplayIncrementAttemptCount(_countOfChanses);
-       // }
+       private IEnumerator WaitToMessage()
+        {
+            yield return new WaitForSecondsRealtime(1.2f);
+            TheEndOfCounts.Invoke();
+        }
         
         public int GetChances()
         {
