@@ -32,15 +32,17 @@ namespace KNH23
         }
         private void StartGamePlay()
         {
-            SpawnTarget();
             _buttonPanelController.DontShowStartButton();
+            SpawnTarget();           
             _throwObjectGenerator.gameObject.SetActive(true);
             _effects.gameObject.SetActive(true);
             _attemptCounterFunctional.gameObject.SetActive(true);
+            _attemptCounterFunctional.SetCounts();
             _attemptCounterVisual.gameObject.SetActive(true);
             _attemptCounterVisual.SetDisplayAttemptCount(_attemptCounterFunctional.GetStartCounts());
             _score.gameObject.SetActive(true);
-          
+            _throwObjectGenerator.SpawnThrowObject();
+
         }
         
         private void OnEnable()
@@ -51,11 +53,10 @@ namespace KNH23
             
 
         }
-        private IEnumerator ChangeTargerts()
+        private void ChangeTargerts()
         {
             _oldTarget = GameObject.FindGameObjectsWithTag("Target");
-            Destroy(_oldTarget[0]);
-            yield return new WaitForSeconds(0.3f);
+            Destroy(_oldTarget[0]);            
             SpawnTarget();
         }
 
@@ -69,15 +70,27 @@ namespace KNH23
         private void ResstartGamePlay()
         {
             _attemptCounterFunctional.SetCounts();
-            StartCoroutine(ChangeTargerts());
+            _attemptCounterVisual.DisplayIncrementAttemptCount(_attemptCounterFunctional.GetStartCounts());
+             ChangeTargerts();
             _buttonPanelController.DontShowResstartButton();
             _throwObjectGenerator.SpawnThrowObject();
             _score.ResetPoints();
-            _attemptCounterVisual.DisplayIncrementAttemptCount(_attemptCounterFunctional.GetStartCounts());
+           
         }
         private void GoToMainMenu()
         {
-            SceneManager.LoadScene(0);
+            _buttonPanelController.DontShowResstartButton();
+            _buttonPanelController.ShowStartButton();
+            _oldTarget = GameObject.FindGameObjectsWithTag("Target");
+            Destroy(_oldTarget[0]);
+            _throwObjectGenerator.DeleteSpawnObject();
+            _throwObjectGenerator.gameObject.SetActive(false);            
+            _attemptCounterFunctional.gameObject.SetActive(false);
+            _attemptCounterVisual.DestroyAllIcons(_attemptCounterFunctional.GetStartCounts());
+            _score.gameObject.SetActive(false);
+
+
+
         }
 
     }

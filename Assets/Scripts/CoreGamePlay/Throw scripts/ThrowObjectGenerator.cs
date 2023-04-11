@@ -11,12 +11,7 @@ namespace KNH23.CoreGamePlay
         [SerializeField] Throwing _activeThrowObject;
         [SerializeField] AttemptCounterFunctional __attemptCounter;
 
-        private void Start()
-        {
-           SpawnThrowObject();
-            
-        }
-
+       
         private void OnEnable()
         {
           InputSystem.Touch.OnTouched += ThrowingObject;
@@ -43,6 +38,13 @@ namespace KNH23.CoreGamePlay
             
             Throwing obj = Instantiate(_objectForThrowPrefab, _spawnPosition, Quaternion.identity); // возьми префаб ножа и поставь в позицию спавна.
             _activeThrowObject = obj;// переписываем появившийся префаб на роль метаемого заряда.
+        }
+
+        public void DeleteSpawnObject()
+        {
+            var obj = FindObjectOfType<ObstacleCollisionDetector>();
+            Destroy(obj.gameObject);
+            
         }
     }
 }

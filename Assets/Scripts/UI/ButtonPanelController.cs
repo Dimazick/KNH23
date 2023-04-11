@@ -43,5 +43,11 @@ namespace KNH23.UI
         {
             _resstartButton.SetActive(false);
         }
+
+        public void ShowStartButton()
+        {
+            _startButton.SetActive(true);
+
+        }
     }
 }

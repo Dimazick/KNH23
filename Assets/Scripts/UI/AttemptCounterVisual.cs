@@ -26,5 +26,19 @@ namespace KNH23
                 _panelOfThrow.transform.GetChild(i).gameObject.SetActive(true);
         }
 
+        public void DontDisplayAttemptCount(int _startCount)
+        {
+            for (int i = 0; i < _startCount; i++)
+                _panelOfThrow.transform.GetChild(i).gameObject.SetActive(false);
+        }
+
+        public void DestroyAllIcons(int count)
+        {
+            for (int i = 0; i < count; i++)
+            {
+                Destroy(_panelOfThrow.transform.GetChild(i).gameObject);
+            }
+
+        }
     }
 }

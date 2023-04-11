@@ -10,12 +10,7 @@ namespace KNH23.CoreGamePlay
         [SerializeField] private AttemptCounterVisual _counter;
         public static event Action TheEndOfCounts;
 
-        private void Awake()
-        {
-           _countOfChanses = _startCounts;
-          
-        }
-
+        
         private void OnEnable()
         {
             InputSystem.Touch.OnTouched += DecrementOfCounts;
@@ -57,6 +52,7 @@ namespace KNH23.CoreGamePlay
             return  _countOfChanses;
         }
 
+       
         
     }
 }
