@@ -1,19 +1,31 @@
+using UnityEngine;
+
 namespace KNH23.CoreGamePlay
 {
     public class TargetMotionData 
     {
-        private int _direction = 1;
+        [SerializeField] private int _duration;
+        [SerializeField] private int _rotarySpeed;
 
-        public int LeftDirection()
+        public int GetRotationSpeed()
         {
-            _direction = 1;
-            return _direction;
+            return _rotarySpeed;
         }
 
-        public int RightDirection()
+        public int GetDuration()
         {
-            _direction = -1;
-            return _direction;
+            return _duration;
+        }
+
+        public void SetDuration(int data) 
+        {
+            _duration = data;
+        }
+
+        public void SetRotationSpeed(int data) 
+        {
+            _rotarySpeed = data;
+                
         }
     }
 }

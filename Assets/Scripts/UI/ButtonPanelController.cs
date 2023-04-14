@@ -36,18 +36,38 @@ namespace KNH23.UI
 
         public void DontShowStartButton()
         {
-            _startButton.SetActive(false);
+            if (_startButton.gameObject.activeInHierarchy)
+            {
+                _startButton.SetActive(false);
+            }
+           
         }
 
         public void DontShowResstartButton()
         {
-            _resstartButton.SetActive(false);
+            if (_resstartButton.gameObject.activeInHierarchy)
+            {
+                _resstartButton.SetActive(false);
+            }
+           
         }
 
         public void ShowStartButton()
         {
             _startButton.SetActive(true);
+        }
 
+        public void ShowMenuButton()
+        {
+            _mainMenuButton.SetActive(true);
+        }
+
+        public void DontShowMenuButton()
+        {
+            if (_mainMenuButton.gameObject.activeInHierarchy)
+            {
+                _mainMenuButton.SetActive(false);
+            }
         }
     }
 }

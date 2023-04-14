@@ -9,7 +9,7 @@ namespace KNH23
 {
     public class SceneController : MonoBehaviour
     {
-        [SerializeField] private TargetMotionForce _targetPrefab;
+        [SerializeField] private GameObject _targetPrefab;
         private Vector2 _targetPosition = new Vector2(0, 2.5f);
         [SerializeField] private ThrowObjectGenerator _throwObjectGenerator;
         [SerializeField] private EfectSystemController _effects;
@@ -17,7 +17,7 @@ namespace KNH23
         [SerializeField] private AttemptCounterVisual _attemptCounterVisual;
         [SerializeField] private ButtonPanelController _buttonPanelController;
         [SerializeField] private ScoreCounter _score;
-        public GameObject[] _oldTarget;
+        public GameObject _oldTarget;
         private bool _gameOver = false;
         public static event Action SuccesLevel;
 
@@ -29,11 +29,12 @@ namespace KNH23
 
         private void SpawnTarget()
         {
-           Instantiate(_targetPrefab, _targetPosition, Quaternion.identity);
+           _oldTarget = Instantiate(_targetPrefab, _targetPosition, Quaternion.identity);
         }
         private void StartGamePlay()
         {
             _buttonPanelController.DontShowStartButton();
+            _buttonPanelController.ShowMenuButton();
             SpawnTarget();           
             _throwObjectGenerator.gameObject.SetActive(true);
             _effects.gameObject.SetActive(true);
@@ -68,13 +69,14 @@ namespace KNH23
 
         private void ChangeTargerts()
         {
-            _oldTarget = GameObject.FindGameObjectsWithTag("Target");
-            Destroy(_oldTarget[0]);
+            
+            Destroy(_oldTarget);
             SpawnTarget();
         }
 
         private void ResstartGamePlay()
         {
+            _buttonPanelController.ShowMenuButton();
             _attemptCounterFunctional.SetCounts();
             _attemptCounterVisual.DisplayIncrementAttemptCount(_attemptCounterFunctional.GetStartCounts());
              ChangeTargerts();
@@ -87,8 +89,8 @@ namespace KNH23
         {
             _buttonPanelController.DontShowResstartButton();
             _buttonPanelController.ShowStartButton();
-            _oldTarget = GameObject.FindGameObjectsWithTag("Target");
-            Destroy(_oldTarget[0]);
+            _buttonPanelController.DontShowMenuButton();
+            Destroy(_oldTarget);
             _throwObjectGenerator.DeleteSpawnObject();
             _throwObjectGenerator.gameObject.SetActive(false);            
             _attemptCounterFunctional.gameObject.SetActive(false);

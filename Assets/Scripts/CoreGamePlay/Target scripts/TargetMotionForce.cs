@@ -1,35 +1,44 @@
+using System.Collections;
 using UnityEngine;
 
 namespace KNH23.CoreGamePlay
 {
+    [RequireComponent(typeof(WheelJoint2D))]
     public class TargetMotionForce : MonoBehaviour
     {
-        
-        private Rigidbody2D _logBody;
-        private TargetMotionData _rotationVector;
-        [SerializeField] [Range(0, 20)] private float _rotationSpeed;
+
+        [SerializeField] private TargetMotionData[] _motionData;
+        private WheelJoint2D _rotationJoint;
+        private JointMotor2D _rotationMotor;
 
 
-        private void Start()
+
+        private void Awake()
         {
-           
-            _logBody = GetComponent<Rigidbody2D>();
-            _rotationVector = new TargetMotionData();
+            _rotationJoint = GetComponent<WheelJoint2D>();
+            _rotationMotor = new JointMotor2D();
+            StartCoroutine(PlayRotation());
+            
         }
 
-        public void GetRotationLeft()
-        {
-            _logBody.AddTorque(_rotationSpeed *_rotationVector.LeftDirection());
-        }
 
-        public void GetRotationRight()
+        private IEnumerator PlayRotation()
         {
-            _logBody.AddTorque(_rotationSpeed * _rotationVector.RightDirection());
-        }
+            int _rotationIndex = 0;
+            while (true)
+            {
+                yield return new WaitForFixedUpdate();
 
-        private void FixedUpdate()
-        {
-            GetRotationLeft();
+                _rotationMotor.motorSpeed = _motionData[_rotationIndex].GetRotationSpeed();
+                _rotationMotor.maxMotorTorque = 10000;
+                _rotationJoint.motor = _rotationMotor;
+
+                yield return new WaitForSecondsRealtime(_motionData[_rotationIndex].GetDuration());
+                _rotationIndex++;
+
+                _rotationIndex = _rotationIndex < _motionData.Length ? _rotationIndex : 0;
+
+            }
         }
     }
 }
