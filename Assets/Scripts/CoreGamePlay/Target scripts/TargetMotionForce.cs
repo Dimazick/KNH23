@@ -4,10 +4,27 @@ using UnityEngine;
 namespace KNH23.CoreGamePlay
 {
     [RequireComponent(typeof(WheelJoint2D))]
+    
     public class TargetMotionForce : MonoBehaviour
     {
+        [System.Serializable]
+        private class MotionData
+        {
+            [SerializeField] private float _speed ; 
+            [SerializeField] private float _duration; 
 
-        [SerializeField] private TargetMotionData[] _motionData;
+            public float GetSpeed()
+            {
+                return _speed;
+            }
+            public float GetDuration()
+            {
+                return _duration;
+            }
+        }
+
+            
+        [SerializeField] private MotionData[] _motionData;
         private WheelJoint2D _rotationJoint;
         private JointMotor2D _rotationMotor;
 
@@ -15,6 +32,7 @@ namespace KNH23.CoreGamePlay
 
         private void Awake()
         {
+            
             _rotationJoint = GetComponent<WheelJoint2D>();
             _rotationMotor = new JointMotor2D();
             StartCoroutine(PlayRotation());
@@ -29,7 +47,7 @@ namespace KNH23.CoreGamePlay
             {
                 yield return new WaitForFixedUpdate();
 
-                _rotationMotor.motorSpeed = _motionData[_rotationIndex].GetRotationSpeed();
+                _rotationMotor.motorSpeed = _motionData[_rotationIndex].GetSpeed();
                 _rotationMotor.maxMotorTorque = 10000;
                 _rotationJoint.motor = _rotationMotor;
 

@@ -9,6 +9,8 @@ namespace KNH23.UI
         [SerializeField] private GameObject _resstartButton;
         [SerializeField] private GameObject _startButton;
         [SerializeField] private GameObject _mainMenuButton;
+        [SerializeField] private GameObject _nextLevelButton;
+        
 
         private void OnEnable()
         {
@@ -39,6 +41,7 @@ namespace KNH23.UI
             if (_startButton.gameObject.activeInHierarchy)
             {
                 _startButton.SetActive(false);
+                
             }
            
         }
@@ -55,6 +58,7 @@ namespace KNH23.UI
         public void ShowStartButton()
         {
             _startButton.SetActive(true);
+           
         }
 
         public void ShowMenuButton()
@@ -69,5 +73,7 @@ namespace KNH23.UI
                 _mainMenuButton.SetActive(false);
             }
         }
+        
+
     }
 }

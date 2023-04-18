@@ -17,8 +17,11 @@ namespace KNH23
         [SerializeField] private AttemptCounterVisual _attemptCounterVisual;
         [SerializeField] private ButtonPanelController _buttonPanelController;
         [SerializeField] private ScoreCounter _score;
+        
         public GameObject _oldTarget;
         private bool _gameOver = false;
+
+
         public static event Action SuccesLevel;
 
 
@@ -55,7 +58,6 @@ namespace KNH23
             CoreGamePlay.Detection.ObstacleCollisionDetector.OnCollisionWintobstacle += GetGamover;
             AttemptCounterFunctional.TheEndOfCounts += GetSuccesLevel;
 
-
         }
         
         private void OnDisable()
@@ -69,7 +71,6 @@ namespace KNH23
 
         private void ChangeTargerts()
         {
-            
             Destroy(_oldTarget);
             SpawnTarget();
         }
@@ -85,6 +86,7 @@ namespace KNH23
             _score.ResetPoints();
            
         }
+
         private void GoToMainMenu()
         {
             _buttonPanelController.DontShowResstartButton();
