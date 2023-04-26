@@ -23,16 +23,16 @@ namespace KNH23.UI
         }
 
 
-        private IEnumerator LittleBitWait()
+        private IEnumerator WaitingForWatch(GameObject _someObject)
         {
             yield return new WaitForSecondsRealtime(1);
-            _resstartButton.SetActive(true);
+            _someObject.SetActive(true);
         }
 
        
         public void ShowResstartButton()
         {
-           StartCoroutine(LittleBitWait());
+           StartCoroutine(WaitingForWatch(_resstartButton));
 
         }
 
@@ -73,7 +73,22 @@ namespace KNH23.UI
                 _mainMenuButton.SetActive(false);
             }
         }
+
         
+
+        public void ShowNextLevelButton()
+        {
+            StartCoroutine(WaitingForWatch(_nextLevelButton));
+        }
+
+        public void DontShowNextLevelButton()
+        {
+            if (_nextLevelButton.gameObject.activeInHierarchy)
+            {
+                _nextLevelButton.SetActive(false);
+            }
+        }
+
 
     }
 }

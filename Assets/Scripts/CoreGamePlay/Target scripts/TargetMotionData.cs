@@ -2,30 +2,50 @@ using UnityEngine;
 
 namespace KNH23.CoreGamePlay
 {
-    public class TargetMotionData 
+    public class TargetMotionData: MonoBehaviour
+        
     {
-        [SerializeField] private int _duration;
-        [SerializeField] private int _rotarySpeed;
+               
+        [SerializeField] private LevelMotionSettings[] _levelMotionSettings;
+        [SerializeField] private int _level;
 
-        public int GetRotationSpeed()
+        public int GetLevel()
         {
-            return _rotarySpeed;
+            return _level;
+
+        }
+        public void SetLevel(int value)
+        {
+            _level = value;
         }
 
-        public int GetDuration()
+        public void IncrementLevel()
         {
-            return _duration;
+            if (_level+1 < _levelMotionSettings.Length)
+                _level += 1;
+            else
+            {
+                _level = 0;
+            }
+            Debug.Log("now level is " + _level);
         }
 
-        public void SetDuration(int data) 
+        private void OnDisable()
         {
-            _duration = data;
+            UI.Buttons.LevelButton.NextLevel -= IncrementLevel;
+        }
+        private void OnEnable()
+        {
+            UI.Buttons.LevelButton.NextLevel += IncrementLevel;
         }
 
-        public void SetRotationSpeed(int data) 
+        public LevelMotionSettings GetLevelMotionSettings(int level)
         {
-            _rotarySpeed = data;
-                
+            return _levelMotionSettings[level];
         }
+
+        
     }
+
+
 }

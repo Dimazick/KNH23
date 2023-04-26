@@ -38,6 +38,7 @@ namespace KNH23
         {
             _buttonPanelController.DontShowStartButton();
             _buttonPanelController.ShowMenuButton();
+            _buttonPanelController.DontShowNextLevelButton();
             SpawnTarget();           
             _throwObjectGenerator.gameObject.SetActive(true);
             _effects.gameObject.SetActive(true);
@@ -78,6 +79,7 @@ namespace KNH23
         private void ResstartGamePlay()
         {
             _buttonPanelController.ShowMenuButton();
+            _buttonPanelController.DontShowNextLevelButton();
             _attemptCounterFunctional.SetCounts();
             _attemptCounterVisual.DisplayIncrementAttemptCount(_attemptCounterFunctional.GetStartCounts());
              ChangeTargerts();
@@ -116,7 +118,14 @@ namespace KNH23
             if (_gameOver==true)
                 return;
             else
+            {
                 SuccesLevel.Invoke();
+                _buttonPanelController.ShowNextLevelButton();
+                Destroy(_oldTarget);
+                StartGamePlay();
+            }
+                
+
             ResetGamover();
         }
 
