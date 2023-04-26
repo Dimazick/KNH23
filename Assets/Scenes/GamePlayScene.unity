@@ -607,7 +607,7 @@ MonoBehaviour:
   _resstartButton: {fileID: 1368786991}
   _startButton: {fileID: 1873788727}
   _mainMenuButton: {fileID: 1383959490}
-  _nextLevelButton: {fileID: 0}
+  _nextLevelButton: {fileID: 130267263}
 --- !u!4 &535142442
 Transform:
   m_ObjectHideFlags: 0
