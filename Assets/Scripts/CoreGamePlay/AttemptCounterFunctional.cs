@@ -6,12 +6,22 @@ namespace KNH23.CoreGamePlay
 {
     public class AttemptCounterFunctional : MonoBehaviour
     {
-        [SerializeField]  private int _countOfChanses;
-        [SerializeField] private int _startCounts;
+        [SerializeField] private int _countOfChanses;
+        [SerializeField] private int[] _startCounts;
         [SerializeField] private AttemptCounterVisual _counter;
+        [SerializeField] private TargetMotionData _targetMotionData;
+
         public static event Action TheEndOfCounts;
 
         
+
+        public void SettingCounts()
+        {
+            _targetMotionData = GameObject.FindObjectOfType<TargetMotionData>();
+            int _startCountIndex = _targetMotionData.GetLevel();
+            _countOfChanses = _startCounts[_startCountIndex];
+        }
+
         private void OnEnable()
         {
             InputSystem.Touch.OnTouched += DecrementOfCounts;
@@ -24,13 +34,10 @@ namespace KNH23.CoreGamePlay
 
         public int GetStartCounts()
         {
-            return _startCounts;
+            return _startCounts[_targetMotionData.GetLevel()];
         }
 
-        public void SetCounts()
-        {
-            _countOfChanses = _startCounts;
-        }
+        
 
         public void DecrementOfCounts()
         {
@@ -43,10 +50,10 @@ namespace KNH23.CoreGamePlay
         }
 
        private IEnumerator WaitToMessage()
-        {
+       {
             yield return new WaitForSecondsRealtime(1.2f);
             TheEndOfCounts.Invoke();
-        }
+       }
         
         public int GetChances()
         {

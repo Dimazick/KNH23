@@ -6,12 +6,15 @@ namespace KNH23.CoreGamePlay
 {
     public class LevelMotionSettings : MonoBehaviour
     {
+        
         [System.Serializable]
         private class MotionSettings
         {
             
             [SerializeField] private float _duration;
             [SerializeField] private float _rotarySpeed;
+            
+           
 
             public float GetRotationSpeed()
             {
@@ -34,7 +37,7 @@ namespace KNH23.CoreGamePlay
 
             }
         }
-       
+                
         [SerializeField] private MotionSettings[] _motionData;
 
         public float GetThisSpeed(int index)

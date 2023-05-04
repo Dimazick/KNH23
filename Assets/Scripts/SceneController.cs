@@ -37,13 +37,14 @@ namespace KNH23
         private void StartGamePlay()
         {
             _buttonPanelController.DontShowStartButton();
+            _buttonPanelController.DontShowNextLevelButton();
             _buttonPanelController.ShowMenuButton();
             _buttonPanelController.DontShowNextLevelButton();
             SpawnTarget();           
             _throwObjectGenerator.gameObject.SetActive(true);
             _effects.gameObject.SetActive(true);
             _attemptCounterFunctional.gameObject.SetActive(true);
-            _attemptCounterFunctional.SetCounts();
+            _attemptCounterFunctional.SettingCounts();
             _attemptCounterVisual.gameObject.SetActive(true);
             _attemptCounterVisual.SetDisplayAttemptCount(_attemptCounterFunctional.GetStartCounts());
             _score.gameObject.SetActive(true);
@@ -56,33 +57,38 @@ namespace KNH23
             UIStartButton.StartGameplay += StartGamePlay;
             UIRestartButton.ReStartGameplay += ResstartGamePlay;
             UIMainMenuButton.GoInMainMenu += GoToMainMenu;
+            UILevelButton.NextLevel += StartGamePlay;
             CoreGamePlay.Detection.ObstacleCollisionDetector.OnCollisionWintobstacle += GetGamover;
             AttemptCounterFunctional.TheEndOfCounts += GetSuccesLevel;
-
+           
         }
         
         private void OnDisable()
         {
             UIStartButton.StartGameplay -= StartGamePlay;
+            UILevelButton.NextLevel -= StartGamePlay;
             UIRestartButton.ReStartGameplay -= ResstartGamePlay;
             UIMainMenuButton.GoInMainMenu -= GoToMainMenu;
             CoreGamePlay.Detection.ObstacleCollisionDetector.OnCollisionWintobstacle -= GetGamover;
             AttemptCounterFunctional.TheEndOfCounts -= GetSuccesLevel;
+            
         }
 
         private void ChangeTargerts()
         {
             Destroy(_oldTarget);
             SpawnTarget();
+            ResetGamover();
         }
 
         private void ResstartGamePlay()
         {
+            
             _buttonPanelController.ShowMenuButton();
-            _buttonPanelController.DontShowNextLevelButton();
-            _attemptCounterFunctional.SetCounts();
-            _attemptCounterVisual.DisplayIncrementAttemptCount(_attemptCounterFunctional.GetStartCounts());
+            _buttonPanelController.DontShowNextLevelButton();                     
              ChangeTargerts();
+            _attemptCounterFunctional.SettingCounts();
+            _attemptCounterVisual.DisplayIncrementAttemptCount(_attemptCounterFunctional.GetStartCounts());
             _buttonPanelController.DontShowResstartButton();
             _throwObjectGenerator.SpawnThrowObject();
             _score.ResetPoints();
@@ -119,10 +125,10 @@ namespace KNH23
                 return;
             else
             {
-                SuccesLevel.Invoke();
-                _buttonPanelController.ShowNextLevelButton();
                 Destroy(_oldTarget);
-                StartGamePlay();
+                SuccesLevel.Invoke();
+                _buttonPanelController.ShowNextLevelButton();                
+                
             }
                 
 

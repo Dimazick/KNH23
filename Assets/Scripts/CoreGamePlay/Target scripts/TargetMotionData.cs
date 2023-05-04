@@ -32,11 +32,11 @@ namespace KNH23.CoreGamePlay
 
         private void OnDisable()
         {
-            UI.Buttons.LevelButton.NextLevel -= IncrementLevel;
+            UI.Buttons.UILevelButton.NextLevel -= IncrementLevel;
         }
         private void OnEnable()
         {
-            UI.Buttons.LevelButton.NextLevel += IncrementLevel;
+            UI.Buttons.UILevelButton.NextLevel += IncrementLevel;
         }
 
         public LevelMotionSettings GetLevelMotionSettings(int level)

@@ -3,7 +3,7 @@ using System;
 
 namespace KNH23.UI.Buttons
 {
-    public class LevelButton : UIABaseButton
+    public class UILevelButton : UIABaseButton
     {
         public static event Action NextLevel;
 
