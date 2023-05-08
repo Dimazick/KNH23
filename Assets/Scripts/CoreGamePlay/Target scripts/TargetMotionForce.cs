@@ -20,7 +20,7 @@ namespace KNH23.CoreGamePlay
             
             _rotationJoint = GetComponent<WheelJoint2D>();
             _rotationMotor = new JointMotor2D();
-            
+            _targetMotionData = GameObject.FindObjectOfType<TargetMotionData>();
             StartCoroutine(PlayRotation());
             
         }

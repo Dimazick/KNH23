@@ -38,15 +38,15 @@ namespace KNH23
         {
             _buttonPanelController.DontShowStartButton();
             _buttonPanelController.DontShowNextLevelButton();
-            _buttonPanelController.ShowMenuButton();
-            _buttonPanelController.DontShowNextLevelButton();
+            _buttonPanelController.ShowMenuButton();            
             SpawnTarget();           
             _throwObjectGenerator.gameObject.SetActive(true);
             _effects.gameObject.SetActive(true);
             _attemptCounterFunctional.gameObject.SetActive(true);
             _attemptCounterFunctional.SettingCounts();
             _attemptCounterVisual.gameObject.SetActive(true);
-            _attemptCounterVisual.SetDisplayAttemptCount(_attemptCounterFunctional.GetStartCounts());
+            _attemptCounterVisual.DestroyAllIcons();
+            _attemptCounterVisual.SetDisplayAttemptCount(_attemptCounterFunctional.GetChances());
             _score.gameObject.SetActive(true);
             _throwObjectGenerator.SpawnThrowObject();
 
@@ -88,7 +88,7 @@ namespace KNH23
             _buttonPanelController.DontShowNextLevelButton();                     
              ChangeTargerts();
             _attemptCounterFunctional.SettingCounts();
-            _attemptCounterVisual.DisplayIncrementAttemptCount(_attemptCounterFunctional.GetStartCounts());
+            _attemptCounterVisual.DisplayIncrementAttemptCount(_attemptCounterFunctional.GetChances());
             _buttonPanelController.DontShowResstartButton();
             _throwObjectGenerator.SpawnThrowObject();
             _score.ResetPoints();
@@ -104,7 +104,7 @@ namespace KNH23
             _throwObjectGenerator.DeleteSpawnObject();
             _throwObjectGenerator.gameObject.SetActive(false);            
             _attemptCounterFunctional.gameObject.SetActive(false);
-            _attemptCounterVisual.DestroyAllIcons(_attemptCounterFunctional.GetStartCounts());
+            _attemptCounterVisual.DestroyAllIcons();
             _score.gameObject.SetActive(false);
 
         }

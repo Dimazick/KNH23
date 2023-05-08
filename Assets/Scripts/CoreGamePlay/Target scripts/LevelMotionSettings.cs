@@ -14,6 +14,7 @@ namespace KNH23.CoreGamePlay
             [SerializeField] private float _duration;
             [SerializeField] private float _rotarySpeed;
             
+            
            
 
             public float GetRotationSpeed()
@@ -39,6 +40,12 @@ namespace KNH23.CoreGamePlay
         }
                 
         [SerializeField] private MotionSettings[] _motionData;
+        [SerializeField] private int _startCounts;
+
+        public int GetStartCounts()
+        {
+            return _startCounts;
+        }
 
         public float GetThisSpeed(int index)
         {

@@ -9,6 +9,7 @@ namespace KNH23.CoreGamePlay
         [SerializeField] private LevelMotionSettings[] _levelMotionSettings;
         [SerializeField] private int _level;
 
+
         public int GetLevel()
         {
             return _level;

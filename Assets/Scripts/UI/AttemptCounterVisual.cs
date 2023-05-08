@@ -32,11 +32,19 @@ namespace KNH23
                 _panelOfThrow.transform.GetChild(i).gameObject.SetActive(false);
         }
 
-        public void DestroyAllIcons(int count)
+        public void DestroyAllIcons()
         {
-            for (int i = 0; i < count; i++)
+            int i = 0;
+            GameObject[] _icons = new GameObject[_panelOfThrow.transform.childCount];
+
+            foreach(Transform child in _panelOfThrow.transform)
             {
-                Destroy(_panelOfThrow.transform.GetChild(i).gameObject);
+                _icons[i] = child.gameObject;
+                i += 1;
+            }
+            foreach(GameObject child in _icons)
+            {
+                DestroyImmediate(child.gameObject);
             }
 
         }
