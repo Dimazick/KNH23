@@ -22,7 +22,7 @@ namespace KNH23.CoreGamePlay.Detection
 
             collision.transform.SetParent(transform);
             collision.gameObject.GetComponent<BoxCollider2D>().offset = new Vector2(0, -0.3f);
-            collision.gameObject.GetComponent<BoxCollider2D>().size = new Vector2(0.2f, 1.5f);
+            collision.gameObject.GetComponent<BoxCollider2D>().size = new Vector2(0.22f, 1.5f);
         }
 
 

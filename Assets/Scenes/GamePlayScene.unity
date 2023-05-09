@@ -755,6 +755,7 @@ MonoBehaviour:
   _attemptCounterVisual: {fileID: 1583896422}
   _buttonPanelController: {fileID: 535142441}
   _score: {fileID: 35527841}
+  _targetMotionData: {fileID: 1928061402}
   _oldTarget: {fileID: 0}
 --- !u!1 &704339566
 GameObject:
@@ -5869,13 +5870,13 @@ MonoBehaviour:
   - _duration: 1.5
     _rotarySpeed: 225
   - _duration: 2
-    _rotarySpeed: 245
+    _rotarySpeed: 0
   - _duration: 1
     _rotarySpeed: -100
   - _duration: 1.4
     _rotarySpeed: 200
   - _duration: 1.7
-    _rotarySpeed: -300
+    _rotarySpeed: 0
   - _duration: 1.5
     _rotarySpeed: -215
   - _duration: 1.3
@@ -11295,7 +11296,7 @@ MonoBehaviour:
   - _duration: 2
     _rotarySpeed: 150
   - _duration: 1.5
-    _rotarySpeed: -180
+    _rotarySpeed: 180
   - _duration: 1.8
     _rotarySpeed: 200
   - _duration: 1.6
@@ -11397,11 +11398,11 @@ MonoBehaviour:
   - _duration: 1.5
     _rotarySpeed: 200
   - _duration: 1.6
-    _rotarySpeed: 250
+    _rotarySpeed: -250
   - _duration: 2
-    _rotarySpeed: -230
+    _rotarySpeed: 230
   - _duration: 1.3
-    _rotarySpeed: 270
+    _rotarySpeed: -270
   - _duration: 1.5
     _rotarySpeed: 230
   - _duration: 1.8

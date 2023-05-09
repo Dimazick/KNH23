@@ -17,6 +17,7 @@ namespace KNH23
         [SerializeField] private AttemptCounterVisual _attemptCounterVisual;
         [SerializeField] private ButtonPanelController _buttonPanelController;
         [SerializeField] private ScoreCounter _score;
+        [SerializeField] private TargetMotionData _targetMotionData;
         
         public GameObject _oldTarget;
         private bool _gameOver = false;
@@ -83,13 +84,12 @@ namespace KNH23
 
         private void ResstartGamePlay()
         {
-            
             _buttonPanelController.ShowMenuButton();
-            _buttonPanelController.DontShowNextLevelButton();                     
-             ChangeTargerts();
-            _attemptCounterFunctional.SettingCounts();
-            _attemptCounterVisual.DisplayIncrementAttemptCount(_attemptCounterFunctional.GetChances());
+            _buttonPanelController.DontShowNextLevelButton();
             _buttonPanelController.DontShowResstartButton();
+            ChangeTargerts();
+            _attemptCounterFunctional.SettingCounts();
+            _attemptCounterVisual.DisplayIncrementAttemptCount(_attemptCounterFunctional.GetChances());            
             _throwObjectGenerator.SpawnThrowObject();
             _score.ResetPoints();
            
@@ -127,6 +127,7 @@ namespace KNH23
             {
                 Destroy(_oldTarget);
                 SuccesLevel.Invoke();
+                _targetMotionData.IncrementLevel();
                 _buttonPanelController.ShowNextLevelButton();                
                 
             }

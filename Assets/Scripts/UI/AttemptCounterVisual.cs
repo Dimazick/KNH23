@@ -37,10 +37,13 @@ namespace KNH23
             int i = 0;
             GameObject[] _icons = new GameObject[_panelOfThrow.transform.childCount];
 
+            
+
             foreach(Transform child in _panelOfThrow.transform)
             {
                 _icons[i] = child.gameObject;
                 i += 1;
+                Debug.Log(child.name);
             }
             foreach(GameObject child in _icons)
             {

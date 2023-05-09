@@ -31,14 +31,7 @@ namespace KNH23.CoreGamePlay
             Debug.Log("now level is " + _level);
         }
 
-        private void OnDisable()
-        {
-            UI.Buttons.UILevelButton.NextLevel -= IncrementLevel;
-        }
-        private void OnEnable()
-        {
-            UI.Buttons.UILevelButton.NextLevel += IncrementLevel;
-        }
+        
 
         public LevelMotionSettings GetLevelMotionSettings(int level)
         {

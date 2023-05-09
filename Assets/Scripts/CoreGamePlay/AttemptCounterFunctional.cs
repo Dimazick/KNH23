@@ -13,13 +13,16 @@ namespace KNH23.CoreGamePlay
 
         public static event Action TheEndOfCounts;
 
-        
+        private void Awake()
+        {
+            _targetMotionData = GameObject.FindObjectOfType<TargetMotionData>();
+        }
 
         public void SettingCounts()
         {
-            _targetMotionData = GameObject.FindObjectOfType<TargetMotionData>();
             int _startCountIndex = _targetMotionData.GetLevel();
             _countOfChanses = _targetMotionData.GetLevelMotionSettings(_startCountIndex).GetStartCounts();
+            Debug.Log("Level = " + _targetMotionData.GetLevelMotionSettings(_startCountIndex) + " _countOf Chances = " + _countOfChanses);
         }
 
         private void OnEnable()
